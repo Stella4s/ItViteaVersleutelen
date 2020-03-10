@@ -20,7 +20,7 @@
                     <Button Content="Menu" Click="Button_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    <Button Content="Encrypt" Click="Button_Encrypt"/>
+                    <Button Content="Encrypt" Command="{Binding Path=UpdateCommand}"/>
                 </StackPanel>
             </Grid>
             <Grid DockPanel.Dock="Right">

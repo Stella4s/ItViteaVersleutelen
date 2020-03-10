@@ -24,14 +24,9 @@ namespace ItViteaVersleutelen.View
         public EncryptionPage()
         {
             InitializeComponent();
-        }
-
-        //Encryption stuff.
-        private void Button_Encrypt(object sender, RoutedEventArgs e)
-        {
+            DataContext = new EncryptionViewModel();
             
         }
-
         //Switcher stuff.
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {

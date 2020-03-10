@@ -13,9 +13,46 @@ namespace ItViteaVersleutelen.ViewModel
     {
         public EncryptionViewModel()
         {
-            EncrypionClassObj = new EncryptionClass();
+            EncryptionObj = new EncryptionClass();
+        }
+        public EncryptionClass EncryptionObj { get; set; }
+
+        public void Encrypt()
+        {
+            EncryptionObj.EncryptText();
         }
 
-        public EncryptionClass EncrypionClassObj { get; set; }
+        private ICommand mUpdater;
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                if (mUpdater == null)
+                    mUpdater = new Updater();
+                return mUpdater;
+            }
+            set
+            {
+                mUpdater = value;
+            }
+        }
+
+        private class Updater : ICommand
+        {
+            #region ICommand Members  
+
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public event EventHandler CanExecuteChanged;
+
+            public void Execute(object parameter)
+            {
+            }
+
+            #endregion
+        }
     }
 }

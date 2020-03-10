@@ -29,6 +29,11 @@ namespace ItViteaVersleutelen.Model
             }
         }
 
+        public void EncryptText()
+        {
+            OutputText = InputText;
+        }
+
         #region INotifyPropertyChanged Members  
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)

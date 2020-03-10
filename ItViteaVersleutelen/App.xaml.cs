@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItViteaVersleutelen.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,13 @@ namespace ItViteaVersleutelen
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            MainWindow window = new MainWindow();
+            EncryptionViewModel VM = new EncryptionViewModel();
+            window.DataContext = VM;
+            window.Show();
+        }
     }
 }

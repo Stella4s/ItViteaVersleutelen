@@ -13,42 +13,9 @@ namespace ItViteaVersleutelen.ViewModel
     {
         public EncryptionViewModel()
         {
-
+            EncrypionClassObj = new EncryptionClass();
         }
 
-        //MVVM section.
-        private ICommand mUpdater;
-        public ICommand UpdateCommand
-        {
-            get
-            {
-                if (mUpdater == null)
-                    mUpdater = new Updater();
-                return mUpdater;
-            }
-            set
-            {
-                mUpdater = value;
-            }
-        }
         public EncryptionClass EncrypionClassObj { get; set; }
-
-        private class Updater : ICommand
-        {
-            #region ICommand Members  
-
-            public bool CanExecute(object parameter)
-            {
-                return true;
-            }
-
-            public event EventHandler CanExecuteChanged;
-
-            public void Execute(object parameter)
-            {
-
-            }
-
-            #endregion
-        }
     }
+}

@@ -26,18 +26,22 @@ namespace ItViteaVersleutelen.View
             InitializeComponent();
         }
 
+        //Encryption stuff.
+        private void Button_Encrypt(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        //Switcher stuff.
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Switcher.Switch(new MainMenu());
         }
-
-
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
         }
         #endregion
-
     }
 }

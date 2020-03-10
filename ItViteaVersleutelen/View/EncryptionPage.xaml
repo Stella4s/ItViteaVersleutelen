@@ -1,29 +1,40 @@
-﻿<UserControl x:Class="ItViteaVersleutelen.View.EncryptionPage"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ItViteaVersleutelen.View"
+             xmlns:Model="clr-namespace:ItViteaVersleutelen.Model" x:Class="ItViteaVersleutelen.View.EncryptionPage"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    
+
     <Grid Margin="10">
         <DockPanel>
-     
-            <StackPanel DockPanel.Dock="Right">
-                <Button Content="Menu" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="75" Click="Button_Click"/>
-            </StackPanel>
-
-            <Grid DockPanel.Dock="Right"  BindingGroup="{Binding EncryptionClass}">
+            <Grid Margin="5" Width="100" DockPanel.Dock="Right" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+                <StackPanel>
+                    <Button Content="Menu" Click="Button_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button Content="Encrypt" Click="Button_Encrypt"/>
+                </StackPanel>
+            </Grid>
+            <Grid DockPanel.Dock="Right">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.DataContext>
+                    <Model:EncryptionClass/>
+                </Grid.DataContext>
                 <TextBox  TextWrapping="Wrap" Text="{Binding InputText}"/>
                 <TextBlock TextWrapping="Wrap" Text="{Binding OutputText}" Grid.Row="1"/>
             </Grid>
-           
+
 
         </DockPanel>
     </Grid>

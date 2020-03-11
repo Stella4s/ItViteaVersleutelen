@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ItViteaVersleutelen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="600">
     <Grid>
-        
+        <Grid Margin="10" Background="WhiteSmoke">
+            <DockPanel >
+                <Grid Margin="5" Width="100" DockPanel.Dock="Right" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel VerticalAlignment="Bottom" >
+                        <Button Content="Encrypt" Padding="4"/>
+                        <Button Content="Decrypt" Padding="4"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+                        <Button Content="Options" Padding="4"/>
+                        <Button Content="Save" Padding="4" Click="Btn_SafeFile_Click"/>
+                    </StackPanel>
+
+                </Grid>
+                <Grid DockPanel.Dock="Right">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBox  TextWrapping="Wrap" Text="Input" Margin="5"/>
+                    <TextBlock Name="txtOutput" TextWrapping="Wrap" Text="Output" Grid.Row="1" Background="White" Margin="5"/>
+                </Grid>
+
+
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>

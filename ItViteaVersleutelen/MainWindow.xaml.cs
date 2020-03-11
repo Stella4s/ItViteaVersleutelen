@@ -1,5 +1,4 @@
-﻿using ItViteaVersleutelen.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
 
 namespace ItViteaVersleutelen
 {
@@ -24,24 +25,15 @@ namespace ItViteaVersleutelen
         public MainWindow()
         {
             InitializeComponent();
-            Switcher.pageSwitcher = this;
-            Switcher.Switch(new View.MainMenu());
-        }
-        public void Navigate(UserControl nextPage)
-        {
-            this.Content = nextPage;
         }
 
-        public void Navigate(UserControl nextPage, object state)
+        private void Btn_SafeFile_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = nextPage;
-            ISwitchable s = nextPage as ISwitchable;
-
-            if (s != null)
-                s.UtilizeState(state);
-            else
-                throw new ArgumentException("NextPage is not ISwitchable! "
-                    + nextPage.Name.ToString());
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+            if (saveFileDialog.ShowDialog() == true)
+                File.WriteAllText(saveFileDialog.FileName, txtOutput.Text);
         }
     }
 }

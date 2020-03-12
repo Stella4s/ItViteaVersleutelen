@@ -40,18 +40,30 @@ namespace ItViteaVersleutelen
         private void Btn_SetPassword_Click(object sender, RoutedEventArgs e)
         {
             password = txtPassword.Text;
+            lableMsg.Content = "Password set";
         }
 
         private void Btn_Encrypt_Click(object sender, RoutedEventArgs e)
         {
-            plaintext = txtInput.Text;
-            txtOutput.Text = Cipher.Encrypt(plaintext);
+            if (password == null || password.Length <= 0)
+                lableMsg.Content = "No password selected.";
+            else
+            {
+                plaintext = txtInput.Text;
+                txtOutput.Text = Cipher.Encrypt(plaintext, password);
+            }
+       
         }
 
         private void Btn_Decrypt_Click(object sender, RoutedEventArgs e)
         {
-            txtEncrypted = txtInput.Text;
-            txtOutput.Text = Cipher.Decrypt(txtEncrypted);
+            if (password == null || password.Length <= 0)
+                lableMsg.Content = "No password selected.";
+            else
+            {
+                txtEncrypted = txtInput.Text;
+                txtOutput.Text = Cipher.Decrypt(txtEncrypted, password);
+            }
         }
     }
 }

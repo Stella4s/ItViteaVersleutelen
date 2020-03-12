@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
+using System.Security.Cryptography;
 
 namespace ItViteaVersleutelen
 {
@@ -40,29 +41,71 @@ namespace ItViteaVersleutelen
         private void Btn_SetPassword_Click(object sender, RoutedEventArgs e)
         {
             password = txtPassword.Text;
-            lableMsg.Content = "Password set";
+            blockMsg.Text = "Password set";
+            blockMsg.ToolTip = null;
         }
 
         private void Btn_Encrypt_Click(object sender, RoutedEventArgs e)
         {
             if (password == null || password.Length <= 0)
-                lableMsg.Content = "No password selected.";
+                blockMsg.Text = "No password selected.";
             else
             {
                 plaintext = txtInput.Text;
-                txtOutput.Text = Cipher.Encrypt(plaintext, password);
+                blockMsg.Text = "Encryption Succesful";
+                blockMsg.ToolTip = null;
+                try
+                {
+                    txtOutput.Text = Cipher.Encrypt(plaintext, password);
+                }
+                catch (CryptographicException ex)
+                {
+                    blockMsg.Text = "Invalid Password.";
+                    blockMsg.ToolTip = String.Format("CryptographicException: {0}", ex.Message.ToString());
+                }
+                catch (FormatException ex)
+                {
+                    blockMsg.Text = "Invalid input. Text isn't in base64.";
+                    blockMsg.ToolTip = String.Format("FormatException: {0}", ex.Message.ToString());
+                }
+                catch (Exception ex)
+                {
+                    blockMsg.Text = "Unexpected error.";
+                    blockMsg.ToolTip = String.Format("Unknown Exception: {0}", ex.Message.ToString());
+                }
             }
-       
+          
         }
 
         private void Btn_Decrypt_Click(object sender, RoutedEventArgs e)
         {
             if (password == null || password.Length <= 0)
-                lableMsg.Content = "No password selected.";
+                blockMsg.Text = "No password selected.";
             else
             {
                 txtEncrypted = txtInput.Text;
-                txtOutput.Text = Cipher.Decrypt(txtEncrypted, password);
+                try
+                {
+                    txtOutput.Text = Cipher.Decrypt(txtEncrypted, password);
+                    blockMsg.Text = "Decryption Succesful";
+                    blockMsg.ToolTip = null;
+                }
+                catch (CryptographicException ex)
+                {
+                    blockMsg.Text = "Invalid Password.";
+                    blockMsg.ToolTip = String.Format("CryptographicException: {0}", ex.Message.ToString());
+                }
+                catch (FormatException ex)
+                {
+                    blockMsg.Text = "Invalid input. Text isn't in base64.";
+                    blockMsg.ToolTip = String.Format("FormatException: {0}", ex.Message.ToString());
+                }
+                catch (Exception ex)
+                {
+                    blockMsg.Text = "Unexpected error.";
+                    blockMsg.ToolTip = String.Format("Unknown Exception: {0}", ex.Message.ToString());
+                }
+                
             }
         }
     }

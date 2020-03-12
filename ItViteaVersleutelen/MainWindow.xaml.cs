@@ -22,6 +22,7 @@ namespace ItViteaVersleutelen
     /// </summary>
     public partial class MainWindow : Window
     {
+        string password, plaintext, txtEncrypted;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +35,23 @@ namespace ItViteaVersleutelen
             saveFileDialog.Filter = "Text file (*.txt)|*.txt";
             if (saveFileDialog.ShowDialog() == true)
                 File.WriteAllText(saveFileDialog.FileName, txtOutput.Text);
+        }
+
+        private void Btn_SetPassword_Click(object sender, RoutedEventArgs e)
+        {
+            password = txtPassword.Text;
+        }
+
+        private void Btn_Encrypt_Click(object sender, RoutedEventArgs e)
+        {
+            plaintext = txtInput.Text;
+            txtOutput.Text = Cipher.Encrypt(plaintext);
+        }
+
+        private void Btn_Decrypt_Click(object sender, RoutedEventArgs e)
+        {
+            txtEncrypted = txtInput.Text;
+            txtOutput.Text = Cipher.Decrypt(txtEncrypted);
         }
     }
 }

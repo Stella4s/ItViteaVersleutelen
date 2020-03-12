@@ -15,8 +15,9 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel VerticalAlignment="Bottom" >
-                        <Button Content="Encrypt" Padding="4"/>
-                        <Button Content="Decrypt" Padding="4"/>
+                        <Button Content="Encrypt" Padding="4" Click="Btn_Encrypt_Click"/>
+                        <Button Content="Decrypt" Padding="4" Click="Btn_Decrypt_Click"/>
+                        <Button Content="Set Password" Padding="4" Click="Btn_SetPassword_Click"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
                         <Button Content="Options" Padding="4"/>
@@ -25,12 +26,19 @@
 
                 </Grid>
                 <Grid DockPanel.Dock="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition Height="0.2*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBox  TextWrapping="Wrap" Text="Input" Margin="5"/>
-                    <TextBlock Name="txtOutput" TextWrapping="Wrap" Text="Output" Grid.Row="1" Background="White" Margin="5"/>
+                    <TextBox   Name="txtInput" TextWrapping="Wrap" Text="Input" Margin="5" Grid.ColumnSpan="2"/>
+                    <Label Content="Password" Margin="5" Grid.Row="1" VerticalContentAlignment="Center" />
+                    <TextBox   Name="txtPassword" TextWrapping="Wrap" Text="Password" Margin="5" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center"/>
+                    <TextBox Name="txtOutput" TextWrapping="Wrap" Text="Output" Grid.Row="2" Background="White" Margin="5" Grid.ColumnSpan="2"/>
                 </Grid>
 
 

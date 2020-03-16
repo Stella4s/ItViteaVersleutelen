@@ -45,6 +45,26 @@ namespace ItViteaVersleutelen
             blockMsg.ToolTip = null;
         }
 
+        private void BtnMoveup_Click(object sender, RoutedEventArgs e)
+        {
+            txtInput.Text = txtOutput.Text;
+        }
+
+        private void BtnClear_Click(object sender, RoutedEventArgs e)
+        {
+            txtInput.Text = null;
+            txtOutput.Text = null;
+        }
+
+        private void Btn_OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.Filter = "Text file (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
+                txtInput.Text = File.ReadAllText(openFileDialog.FileName);
+        }
+
         private void Btn_Encrypt_Click(object sender, RoutedEventArgs e)
         {
             if (password == null || password.Length <= 0)
